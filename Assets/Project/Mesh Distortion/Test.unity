@@ -193,6 +193,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrameRateCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 9039427484397037983, guid: 753cdea498f6d014584791dbab2d3af8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 753cdea498f6d014584791dbab2d3af8, type: 3}
 --- !u!1 &110786813
@@ -573,13 +578,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394971071}
-  m_LocalRotation: {x: -0.07079375, y: 0.9291977, z: -0.2585628, w: -0.25441152}
-  m_LocalPosition: {x: 13.24, y: 19.57, z: 20.61}
+  m_LocalRotation: {x: -0.051018417, y: 0.9458204, z: -0.18350624, w: -0.26295704}
+  m_LocalPosition: {x: 20.7, y: 19.57, z: 29.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 31.100002, y: 210.624, z: 0}
+  m_LocalEulerAnglesHint: {x: 21.96, y: 211.07399, z: 0}
 --- !u!114 &1394971075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -730,6 +735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735843517}
   - component: {fileID: 1735843516}
+  - component: {fileID: 1735843518}
   m_Layer: 0
   m_Name: MeshGen
   m_TagString: Untagged
@@ -754,9 +760,9 @@ MonoBehaviour:
     type: 3}
   material: {fileID: 2100000, guid: 528fb891d8f794b46a3ed17d8b90ff4b, type: 2}
   mesh: {fileID: 753221313581179958, guid: a8d0ef502f3ca0d45a72d098dcfd3080, type: 3}
+  changeSizeManual: 0
   step: 0.0124
   chaos: 0.02
-  changeSizeManual: 0
 --- !u!4 &1735843517
 Transform:
   m_ObjectHideFlags: 0
@@ -771,6 +777,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1735843518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735843515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0e182fc85020c4da97b6894acc3155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DistortionMesh: {fileID: 1735843516}
 --- !u!1 &1926510298
 GameObject:
   m_ObjectHideFlags: 0

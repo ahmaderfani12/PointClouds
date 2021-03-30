@@ -13,11 +13,25 @@ public class DistortionMesh : MonoBehaviour
 
     [SerializeField] Mesh mesh = default;
 
+    [SerializeField] bool changeSizeManual = false;
+
     [SerializeField, Range(0.001f, 0.2f)] float step = 0.02f; // scale
 
     [SerializeField, Range(0f, 1000)] float chaos = 0.02f;
 
-    [SerializeField] bool changeSizeManual = false;
+    public float Chaos
+    {
+        get => chaos;
+        set
+        {
+            if ((value > 0) && (value < 1000))
+            {
+                chaos = value;
+            }
+        }
+    }
+
+
 
     ComputeBuffer positionsBuffer;
     ComputeBuffer positionsBufferTemp;
@@ -75,6 +89,7 @@ public class DistortionMesh : MonoBehaviour
     {
         step = Mathf.Lerp(0.01f, 0.04f, chaos / 1000);
     }
+
     void OnDisable()
     {
         positionsBuffer.Release();
@@ -82,5 +97,6 @@ public class DistortionMesh : MonoBehaviour
         positionsBuffer = null;
         positionsBufferTemp = null;
     }
+
 }
 
