@@ -17,6 +17,8 @@ public class DistortionMesh : MonoBehaviour
 
     [SerializeField, Range(0f, 1000)] float chaos = 0.02f;
 
+    [SerializeField] bool changeSizeManual = false;
+
     ComputeBuffer positionsBuffer;
     ComputeBuffer positionsBufferTemp;
 
@@ -65,10 +67,14 @@ public class DistortionMesh : MonoBehaviour
         int groups = Mathf.CeilToInt(sourceMesh.vertexCount / 64f);
         computeShader.Dispatch(0, groups, 1, 1);
         Graphics.DrawMeshInstancedProcedural(mesh, 0, material, bounds, positionsBuffer.count);
-       
+
+        if(!changeSizeManual) SetAutoStep();
     }
 
-
+    void SetAutoStep()
+    {
+        step = Mathf.Lerp(0.01f, 0.04f, chaos / 1000);
+    }
     void OnDisable()
     {
         positionsBuffer.Release();

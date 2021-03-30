@@ -602,7 +602,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -756,6 +756,7 @@ MonoBehaviour:
   mesh: {fileID: 753221313581179958, guid: a8d0ef502f3ca0d45a72d098dcfd3080, type: 3}
   step: 0.0124
   chaos: 0.02
+  changeSizeManual: 0
 --- !u!4 &1735843517
 Transform:
   m_ObjectHideFlags: 0
