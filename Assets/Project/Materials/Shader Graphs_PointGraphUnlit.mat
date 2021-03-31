@@ -22,4 +22,4 @@ Material:
     m_TexEnvs: []
     m_Floats: []
     m_Colors:
-    - Color_93D14F63: {r: 0, g: 2.9960785, b: 2.0078433, a: 0}
+    - Color_93D14F63: {r: 2.9960785, g: 0, b: 0.21894932, a: 0}
