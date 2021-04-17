@@ -3,6 +3,8 @@
 #endif
 
 float _Step;
+float4 _color;
+float1 _intensity;
 
 void ConfigureProcedural () {
 	#if defined(UNITY_PROCEDURAL_INSTANCING_ENABLED)
@@ -14,10 +16,17 @@ void ConfigureProcedural () {
 	#endif
 }
 
-void ShaderGraphFunction_float (float3 In, out float3 Out) {
+void ShaderGraphFunction_float(float3 In, out float3 Out, out float4 Color, out float1 Intensity)
+{
 	Out = In;
+    Color = _color;
+    Intensity = _intensity;
+
 }
 
-void ShaderGraphFunction_half (half3 In, out half3 Out) {
+void ShaderGraphFunction_half(half3 In, out half3 Out, out float4 Color, out float1 Intensity)
+{
 	Out = In;
+    Color = _color;
+    Intensity = _intensity;
 }

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_PointGraphUnlit
-  m_Shader: {fileID: -6465566751694194690, guid: d2616a0dc1d366f4bacaa681ab15b2ae,
+  m_Name: Shader Graphs_PointGraphUnlitDefaultColor
+  m_Shader: {fileID: -6465566751694194690, guid: 1ce4485572bf6c14f8a7b10ac77e4142,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -22,4 +22,4 @@ Material:
     m_TexEnvs: []
     m_Floats: []
     m_Colors:
-    - Color_93D14F63: {r: 7.3772106, g: 7.3772106, b: 7.3772106, a: 0}
+    - Color_93D14F63: {r: 1.8443027, g: 1.8443027, b: 1.8443027, a: 0}

@@ -758,7 +758,7 @@ MonoBehaviour:
   computeShader: {fileID: 7200000, guid: 9c22ee1b166f7d34a98cb731e9f11d60, type: 3}
   sourceMesh: {fileID: 1454486296333260013, guid: 16cce85dd64af7449a92b6bc4c7569c0,
     type: 3}
-  material: {fileID: 2100000, guid: 528fb891d8f794b46a3ed17d8b90ff4b, type: 2}
+  material: {fileID: 2100000, guid: 9cab3be5c3a002145aee10e82f1b5c0e, type: 2}
   mesh: {fileID: 753221313581179958, guid: a8d0ef502f3ca0d45a72d098dcfd3080, type: 3}
   changeSizeManual: 0
   step: 0.0124
