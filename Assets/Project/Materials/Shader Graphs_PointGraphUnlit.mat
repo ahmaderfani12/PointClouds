@@ -29,7 +29,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_6F4DE387: -0.3
     - _ColorFromTexture: 1
     - _ColorFromTextureLerp: 1
     m_Colors:
     - Color_93D14F63: {r: 6.498019, g: 6.498019, b: 6.498019, a: 0}
+    - Vector3_4B113686: {r: -1, g: 0, b: 0, a: 0}
