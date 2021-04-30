@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_PointGraphUnlitDefaultColor
+  m_Name: Mat_Distortion
   m_Shader: {fileID: -6465566751694194690, guid: 1ce4485572bf6c14f8a7b10ac77e4142,
     type: 3}
   m_ShaderKeywords: 
@@ -22,4 +22,4 @@ Material:
     m_TexEnvs: []
     m_Floats: []
     m_Colors:
-    - Color_93D14F63: {r: 1.8443027, g: 1.8443027, b: 1.8443027, a: 0}
+    - Color_93D14F63: {r: 0.07623728, g: 1.7958124, b: 1.5655127, a: 0}

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_PointGraphUnlit
+  m_Name: Mat_MeshShow
   m_Shader: {fileID: -6465566751694194690, guid: d2616a0dc1d366f4bacaa681ab15b2ae,
     type: 3}
   m_ShaderKeywords: 
@@ -24,14 +24,21 @@ Material:
         m_Texture: {fileID: 2800000, guid: 7157f61025c2fbc4aab115a8635c9b59, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_6EFC1BBC_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 4dce6c10ed986ff4cb0f9f410e2ae0b1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_DEF7EDC5_Texture_1:
         m_Texture: {fileID: 2800000, guid: 7157f61025c2fbc4aab115a8635c9b59, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Boolean_8D38B351: 0
     - Vector1_6F4DE387: -0.3
     - _ColorFromTexture: 1
     - _ColorFromTextureLerp: 1
+    - _UseAlpha: 1
+    - _UseNormals: 1
     m_Colors:
     - Color_93D14F63: {r: 6.498019, g: 6.498019, b: 6.498019, a: 0}
     - Vector3_4B113686: {r: -1, g: 0, b: 0, a: 0}

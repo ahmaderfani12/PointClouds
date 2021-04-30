@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MeshGraph : MonoBehaviour
 {
+    [Header("Static Setups")]
 
     [SerializeField] ComputeShader computeShader = default;
 
@@ -13,23 +14,31 @@ public class MeshGraph : MonoBehaviour
 
     [SerializeField] Mesh pointsMesh = default;
 
+    [SerializeField] private bool setColorFromTexture = false;
+
+    [SerializeField] private bool useNormalDirection = false;
+
+    [SerializeField] Texture2D sourceMeshTexture = default;
+
+    [Header("Dynamic Setups")]
     [SerializeField, Range(0.001f, 0.2f)] float step = 0.02f;
-
     [SerializeField] Color pointsColor = Color.white;
-
     [SerializeField, Range(0.0f, 1.0f)] float colorIntensity = 0.5f;
     [SerializeField, Range(0.0f, 1.0f)] float colorFromTextureLerp = 0;
-    [SerializeField] Texture2D sourceMeshTexture = default;
-    [SerializeField] private bool useUvs = false;
+
+    [SerializeField] private bool useAlpha = false;
+
+
 
     ComputeBuffer positionsBuffer;
     ComputeBuffer uvsBuffer;
+    ComputeBuffer normalsBuffer;
 
 
     Bounds bounds;
     Vector3[] vertices;
     Vector2[] uvs;
-
+    Vector3[] normals;
 
     private void Awake()
     {
@@ -52,16 +61,35 @@ public class MeshGraph : MonoBehaviour
     private void SetStaticMaterialData()
     {
         material.SetBuffer("_Positions", positionsBuffer);
+        material.SetFloat("_UseNormals", 0);
         colorFromTextureLerp = 0;
-        if (useUvs)
+        if (setColorFromTexture)
         {
-            uvs = sourceMesh.uv;
-            uvsBuffer = new ComputeBuffer(uvs.Length, 2 * 4);
-            uvsBuffer.SetData(uvs);
-            material.SetBuffer("_uvs", uvsBuffer);
-            material.SetTexture("_MainTex", sourceMeshTexture);
-            colorFromTextureLerp = 1;
+            SetUVAndTextureData();
         }
+        if (useNormalDirection)
+        {
+            SetNormalsData();
+        }
+    }
+
+    private void SetNormalsData()
+    {
+        normals = sourceMesh.normals;
+        normalsBuffer = new ComputeBuffer(normals.Length, 3 * 4);
+        normalsBuffer.SetData(normals);
+        material.SetBuffer("_Normals", normalsBuffer);
+        material.SetFloat("_UseNormals", 1);
+    }
+
+    private void SetUVAndTextureData()
+    {
+        uvs = sourceMesh.uv;
+        uvsBuffer = new ComputeBuffer(uvs.Length, 2 * 4);
+        uvsBuffer.SetData(uvs);
+        material.SetBuffer("_uvs", uvsBuffer);
+        material.SetTexture("_MainTex", sourceMeshTexture);
+        colorFromTextureLerp = 1;
     }
 
     private void DispachComputeShader()
@@ -74,10 +102,10 @@ public class MeshGraph : MonoBehaviour
     private void Update()
     {
         SetMaterialDynamicData();
-        DrawInsyanceMeshes();
+        DrawInstanceMeshes();
     }
 
-    private void DrawInsyanceMeshes()
+    private void DrawInstanceMeshes()
     {
         Graphics.DrawMeshInstancedProcedural(pointsMesh, 0, material, bounds, positionsBuffer.count);
     }
@@ -91,16 +119,22 @@ public class MeshGraph : MonoBehaviour
         material.SetVector("_worldPos", this.transform.position);
         material.SetVector("_color", new Vector4(pointsColor.r, pointsColor.g, pointsColor.b, 1));
         material.SetFloat("_ColorFromTextureLerp", colorFromTextureLerp);
+        material.SetFloat("_UseAlpha", useAlpha?1:0);
     }
 
     void OnDisable()
     {
         positionsBuffer.Release();
         positionsBuffer = null;
-        if (useUvs)
+        if (setColorFromTexture)
         {
             uvsBuffer.Release();
             uvsBuffer = null;
+        }
+        if (useNormalDirection)
+        {
+            normalsBuffer.Release();
+            normalsBuffer = null;
         }
 
     }
