@@ -721,13 +721,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: d9ed3e45e0c5c6846b01be616348bc2e, type: 3}
-  sourceMesh: {fileID: -8538095981117259767, guid: 80a6251f6afe1b6409e10f9c85a14f34,
+  sourceMesh: {fileID: -2207419334760263587, guid: b7d4cb658c6d17a42bbb2efce956d009,
     type: 3}
   material: {fileID: 2100000, guid: 528fb891d8f794b46a3ed17d8b90ff4b, type: 2}
   pointsMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   setColorFromTexture: 1
   useNormalDirection: 1
-  sourceMeshTexture: {fileID: 2800000, guid: 7157f61025c2fbc4aab115a8635c9b59, type: 3}
+  sourceMeshTexture: {fileID: 2800000, guid: 7aeee406d10f7ec4191c56b3eacf9b95, type: 3}
   step: 0.0332
   pointsColor: {r: 1, g: 1, b: 1, a: 1}
   colorIntensity: 0.533
