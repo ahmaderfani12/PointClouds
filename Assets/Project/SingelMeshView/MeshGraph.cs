@@ -6,9 +6,9 @@ public class MeshGraph : MonoBehaviour
 {
     [Header("Static Setups")]
 
-    [SerializeField] ComputeShader computeShader = default;
+    [SerializeField] protected  ComputeShader computeShader = default;
 
-    [SerializeField] Mesh sourceMesh = default;
+    [SerializeField] protected Mesh sourceMesh = default;
 
     [SerializeField] Material material = default;
 
@@ -42,6 +42,11 @@ public class MeshGraph : MonoBehaviour
 
     private void Awake()
     {
+        InitalMesh();
+    }
+
+    protected void InitalMesh()
+    {
         SetPositionBufferToComputeShader();
 
         SetStaticMaterialData();
@@ -56,6 +61,7 @@ public class MeshGraph : MonoBehaviour
         Debug.Log("vertis Count :" + vertices.Length);
         positionsBuffer = new ComputeBuffer(vertices.Length, 3 * 4);
         positionsBuffer.SetData(vertices);
+        computeShader.SetBuffer(0, "_Positions", positionsBuffer);
     }
 
     private void SetStaticMaterialData()
@@ -92,26 +98,27 @@ public class MeshGraph : MonoBehaviour
         colorFromTextureLerp = 1;
     }
 
-    private void DispachComputeShader()
+    protected void DispachComputeShader()
     {
         int groups = Mathf.CeilToInt(vertices.Length / 64f);
         computeShader.Dispatch(0, groups, 1, 1);
     }
 
 
-    private void Update()
+    protected void Update()
     {
         SetMaterialDynamicData();
         DrawInstanceMeshes();
+      
     }
 
-    private void DrawInstanceMeshes()
+    protected void DrawInstanceMeshes()
     {
         Graphics.DrawMeshInstancedProcedural(pointsMesh, 0, material, bounds, positionsBuffer.count);
     }
 
    
-    private void SetMaterialDynamicData()
+    protected void SetMaterialDynamicData()
     {
         material.SetFloat("_Step", step);
         material.SetFloat("_scale", this.transform.localScale.x);
@@ -121,6 +128,8 @@ public class MeshGraph : MonoBehaviour
         material.SetFloat("_ColorFromTextureLerp", colorFromTextureLerp);
         material.SetFloat("_UseAlpha", useAlpha?1:0);
     }
+
+ 
 
     void OnDisable()
     {
