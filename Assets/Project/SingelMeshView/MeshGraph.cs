@@ -21,7 +21,7 @@ public class MeshGraph : MonoBehaviour
     [SerializeField] Texture2D sourceMeshTexture = default;
 
     [Header("Dynamic Setups")]
-    [SerializeField, Range(0.001f, 0.2f)] float step = 0.02f;
+    [SerializeField, Range(0.001f, 0.2f)] float step = 0.02f; //size
     [SerializeField] Color pointsColor = Color.white;
     [SerializeField, Range(0.0f, 1.0f)] float colorIntensity = 0.5f;
     [SerializeField, Range(0.0f, 1.0f)] float colorFromTextureLerp = 0;
@@ -118,7 +118,7 @@ public class MeshGraph : MonoBehaviour
     }
 
    
-    protected void SetMaterialDynamicData()
+    protected virtual void SetMaterialDynamicData()
     {
         material.SetFloat("_Step", step);
         material.SetFloat("_scale", this.transform.localScale.x);
@@ -131,7 +131,7 @@ public class MeshGraph : MonoBehaviour
 
  
 
-    void OnDisable()
+    protected virtual void OnDisable()
     {
         positionsBuffer.Release();
         positionsBuffer = null;

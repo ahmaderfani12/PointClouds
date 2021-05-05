@@ -15,8 +15,7 @@ public class TouchableMesh : MeshGraph
     private void Awake()
     {
         SetVelocityBuffer();
-        InitalMesh();
-      
+        InitalMesh();     
     }
  
 
@@ -26,9 +25,7 @@ public class TouchableMesh : MeshGraph
         base.Update();
         DispachComputeShader();
         GetHandData();
-        SetHandDataToComputeShader();
-
-      
+        SetHandDataToComputeShader(); 
     }
 
     private void SetVelocityBuffer()
