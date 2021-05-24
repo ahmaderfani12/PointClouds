@@ -9,8 +9,7 @@ public class HandSphere : MonoBehaviour
 
     private Vector3 previous;
 
-
-
+    //Run every frame
     private void Update()
     {
         Velocity = (transform.position - previous) / Time.deltaTime;

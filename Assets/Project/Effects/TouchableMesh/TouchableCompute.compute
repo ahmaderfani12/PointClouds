@@ -21,7 +21,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     vToHand = normalize(vToHand);
     
     //velocity += clamp(-1, 1, _handVelocity) * smoothstep(_handRadious, 0, distance - _handRadious / 2) * step(_handRadious/2, distance) * saturate(dot(vToHand, _handVelocity));
-    velocity += clamp(-1, 1, _handVelocity) * smoothstep(_handRadious, 0, distance ) * saturate(dot(vToHand, _handVelocity));
+    velocity +=  _handVelocity * smoothstep(_handRadious, 0, distance ) * saturate(dot(vToHand, _handVelocity));
     
     _Positions[id.x] += velocity;
     _velocity[id.x] = velocity;
