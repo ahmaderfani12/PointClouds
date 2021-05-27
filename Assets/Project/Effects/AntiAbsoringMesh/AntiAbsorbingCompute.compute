@@ -1,0 +1,20 @@
+﻿
+#pragma kernel CSMain
+
+RWStructuredBuffer<float3> _Positions;
+RWStructuredBuffer<float3> _PositionsTemp; //real pos
+
+float3 _handPosition;
+float1 _effectRadious;
+float1 _effectPower;
+
+[numthreads(64, 1, 1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+
+    float3 vToHand = _PositionsTemp[id.x] - _handPosition;
+    float distance = length(vToHand);
+    vToHand = normalize(vToHand);
+    _Positions[id.x] = pow(smoothstep(_effectRadious, 0, distance) , _effectPower) * vToHand + _PositionsTemp[id.x];
+    
+}

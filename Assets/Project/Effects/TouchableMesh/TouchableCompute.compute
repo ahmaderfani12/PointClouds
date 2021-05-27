@@ -1,0 +1,29 @@
+﻿
+#pragma kernel CSMain
+
+RWStructuredBuffer<float3> _Positions;
+RWStructuredBuffer<float3> _velocity;
+
+float3 _handPosition;
+float3 _handVelocity;
+float1 _drag;
+float1 _handRadious;
+
+[numthreads(64, 1, 1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    float3 velocity = _velocity[id.x];
+    
+    velocity *= _drag;
+    
+    float3 vToHand = _Positions[id.x] - _handPosition;
+    float distance = length(vToHand);
+    vToHand = normalize(vToHand);
+    
+    //velocity += clamp(-1, 1, _handVelocity) * smoothstep(_handRadious, 0, distance - _handRadious / 2) * step(_handRadious/2, distance) * saturate(dot(vToHand, _handVelocity));
+    velocity +=  _handVelocity * smoothstep(_handRadious, 0, distance ) * saturate(dot(vToHand, _handVelocity));
+    
+    _Positions[id.x] += velocity;
+    _velocity[id.x] = velocity;
+
+}

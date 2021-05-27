@@ -1,0 +1,11 @@
+﻿
+#pragma kernel CSMain
+
+
+RWStructuredBuffer<float3> _Positions;
+
+[numthreads(64,1,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+   
+}
