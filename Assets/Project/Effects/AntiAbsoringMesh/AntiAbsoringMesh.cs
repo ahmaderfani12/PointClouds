@@ -24,6 +24,7 @@ public class AntiAbsoringMesh : MeshGraph
         GetHandData();
         SetHandDataToComputeShader();
     }
+
     private void GetHandData()
     {
         handPosition = handSphere.transform.position;

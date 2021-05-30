@@ -19,7 +19,7 @@ float random(in float x)
 }
 
 
-float3 SinWave(float3 realPos , int id)
+float3 Wave(float3 realPos , int id)
 {
     float rand = random(id);
     
@@ -32,7 +32,7 @@ float3 SinWave(float3 realPos , int id)
 [numthreads(64, 1, 1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
-    _Positions[id.x] = SinWave(_PositionsTemp[id.x], id.x);
+    _Positions[id.x] = Wave(_PositionsTemp[id.x], id.x);
 
 }
 

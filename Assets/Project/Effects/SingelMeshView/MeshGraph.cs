@@ -104,12 +104,10 @@ public class MeshGraph : MonoBehaviour
         computeShader.Dispatch(0, groups, 1, 1);
     }
 
-
     protected void Update()
     {
         SetMaterialDynamicData();
         DrawInstanceMeshes();
-      
     }
 
     protected void DrawInstanceMeshes()
@@ -117,7 +115,6 @@ public class MeshGraph : MonoBehaviour
         Graphics.DrawMeshInstancedProcedural(pointsMesh, 0, material, bounds, positionsBuffer.count);
     }
 
-   
     protected virtual void SetMaterialDynamicData()
     {
         material.SetFloat("_Step", step);

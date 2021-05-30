@@ -11,6 +11,7 @@ public class TouchableMesh : MeshGraph
 
     private Vector3 handVelocity;
     private Vector3 handPosition;
+    private float handRadious;
 
     private void Awake()
     {
@@ -18,8 +19,6 @@ public class TouchableMesh : MeshGraph
         InitalMesh();     
     }
  
-
-
     private new void Update()
     {
         base.Update();
@@ -39,12 +38,13 @@ public class TouchableMesh : MeshGraph
     {
         handPosition = handSphere.transform.position;
         handVelocity = handSphere.Velocity;
+        handRadious = handSphere.Radious;
     }
     private void SetHandDataToComputeShader()
     {
         computeShader.SetVector("_handVelocity", handVelocity);
         computeShader.SetVector("_handPosition", handPosition);
         computeShader.SetFloat("_drag", drag);
-        computeShader.SetFloat("_handRadious", handSphere.Radious);
+        computeShader.SetFloat("_handRadious", handRadious);
     }
 }
