@@ -124,6 +124,7 @@ public class MeshGraph : MonoBehaviour
         material.SetVector("_color", new Vector4(pointsColor.r, pointsColor.g, pointsColor.b, 1));
         material.SetFloat("_ColorFromTextureLerp", colorFromTextureLerp);
         material.SetFloat("_UseAlpha", useAlpha?1:0);
+        material.SetFloat("_YRotation", transform.eulerAngles.y * Mathf.Deg2Rad);
     }
 
  
