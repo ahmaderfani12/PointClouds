@@ -726,13 +726,13 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 528fb891d8f794b46a3ed17d8b90ff4b, type: 2}
   pointsMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   setColorFromTexture: 1
-  useNormalDirection: 1
+  useNormalDirection: 0
   sourceMeshTexture: {fileID: 2800000, guid: 7aeee406d10f7ec4191c56b3eacf9b95, type: 3}
   step: 0.0332
   pointsColor: {r: 1, g: 1, b: 1, a: 1}
   colorIntensity: 0.533
   colorFromTextureLerp: 0
-  useAlpha: 0
+  useAlpha: 1
 --- !u!4 &1735843517
 Transform:
   m_ObjectHideFlags: 0

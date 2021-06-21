@@ -36,9 +36,9 @@ Material:
     - Boolean_8D38B351: 0
     - Vector1_6F4DE387: -0.3
     - _ColorFromTexture: 1
-    - _ColorFromTextureLerp: 1
-    - _UseAlpha: 0
-    - _UseNormals: 1
+    - _ColorFromTextureLerp: 0.508
+    - _UseAlpha: 1
+    - _UseNormals: 0
     m_Colors:
     - Color_93D14F63: {r: 6.498019, g: 6.498019, b: 6.498019, a: 0}
     - Vector3_4B113686: {r: -1, g: 0, b: 0, a: 0}
