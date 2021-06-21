@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AntiAbsoringMesh : MeshGraph
+public class AntiAbsoringMesh : MeshToPointCloud
 {
     [SerializeField] private HandSphere handSphere;
     [SerializeField , Range(0,20)] private float effectRadious=1;
@@ -13,7 +13,7 @@ public class AntiAbsoringMesh : MeshGraph
 
     private void Awake()
     {
-        InitalMesh();
+        InitalMeshData();
         SetTempPositionBufferToComputeShader();
     }
 

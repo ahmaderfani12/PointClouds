@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TouchableMesh : MeshGraph
+public class TouchableMesh : MeshToPointCloud
 {
     [SerializeField] private HandSphere handSphere;
     [SerializeField , Range(0,1)] private float drag = 0.5f;
@@ -16,7 +16,7 @@ public class TouchableMesh : MeshGraph
     private void Awake()
     {
         SetVelocityBuffer();
-        InitalMesh();     
+        InitalMeshData();     
     }
  
     private new void Update()

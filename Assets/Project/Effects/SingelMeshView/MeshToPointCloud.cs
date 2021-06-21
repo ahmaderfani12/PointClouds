@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeshGraph : MonoBehaviour
+public class MeshToPointCloud : MonoBehaviour
 {
     [Header("Static Setups")]
 
@@ -40,19 +40,19 @@ public class MeshGraph : MonoBehaviour
     Vector2[] uvs;
     Vector3[] normals;
 
+    //If we just want to show the Points whithout any caculation on compute shader(like this class)
+    //we can ignore executing compute shader
     private void Awake()
     {
-        InitalMesh();
+        InitalMeshData(); 
     }
 
-    protected void InitalMesh()
+    protected void InitalMeshData()
     {
         SetPositionBufferToComputeShader();
-
         SetStaticMaterialData();
         DispachComputeShader();
-
-        bounds = new Bounds(Vector3.zero, Vector3.one * 200);
+        SetComputeShaderBound();
     }
 
     private void SetPositionBufferToComputeShader()
@@ -70,13 +70,9 @@ public class MeshGraph : MonoBehaviour
         material.SetFloat("_UseNormals", 0);
         colorFromTextureLerp = 0;
         if (setColorFromTexture)
-        {
             SetUVAndTextureData();
-        }
         if (useNormalDirection)
-        {
             SetNormalsData();
-        }
     }
 
     private void SetNormalsData()
@@ -127,7 +123,11 @@ public class MeshGraph : MonoBehaviour
         material.SetFloat("_YRotation", transform.eulerAngles.y * Mathf.Deg2Rad);
     }
 
- 
+    private void SetComputeShaderBound()
+    {
+        bounds = new Bounds(Vector3.zero, Vector3.one * 200);
+    }
+
 
     protected virtual void OnDisable()
     {

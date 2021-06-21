@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DistortionMesh : MeshGraph
+public class DistortionMesh : MeshToPointCloud
 {
     ComputeBuffer positionsBufferTemp;
 
@@ -22,7 +22,7 @@ public class DistortionMesh : MeshGraph
 
     private void Awake()
     {
-        base.InitalMesh();
+        base.InitalMeshData();
 
         SetTempPositionBufferToComputeShader();
     }
