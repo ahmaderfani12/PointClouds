@@ -17,6 +17,10 @@ void ConfigureProcedural()
 { //run per vertex
 #if defined(UNITY_PROCEDURAL_INSTANCING_ENABLED)
 	
+	float3 position = _Positions[unity_InstanceID];
+	_uvPosition = _uvs[unity_InstanceID];
+	_normalDirection = _Normals[unity_InstanceID];
+	
 		float4x4 rotate = { cos(_YRotation),  0.0,  sin(_YRotation), 0.0f,
 						    0.0,   1.0,  0.0f, 0.0f,
 					        -sin(_YRotation),      0.0f,  cos(_YRotation), 0.0f,
@@ -28,9 +32,8 @@ void ConfigureProcedural()
 							0.0,0.0,_Step,0.0,
 							0.0,0.0,0.0,1.0 };
 	
-		float3 position = _Positions[unity_InstanceID];
-	
-		float4x4 pos = {1.0,0.0,0.0,(position.x * _scale)+_worldPos.x,
+			
+		float4x4 worldPos = {1.0,0.0,0.0,(position.x * _scale)+_worldPos.x,
 							0.0,1.0,0.0,(position.y * _scale)+_worldPos.y,
 							0.0,0.0,1.0,(position.z * _scale)+ _worldPos.z,
 							0.0,0.0,0.0,1.0 };
@@ -45,15 +48,11 @@ void ConfigureProcedural()
 							0.0,0.0,1.0,- position.z * _scale,
 							0.0,0.0,0.0,1.0 };
 	
-	    _uvPosition = _uvs[unity_InstanceID];
-		_normalDirection = _Normals[unity_InstanceID];
-
-
-	unity_ObjectToWorld = pos;
+	    
+	unity_ObjectToWorld = worldPos;
 	unity_ObjectToWorld =mul(mul(mul(mul(unity_ObjectToWorld,localPosNegative),rotate),localPos),scale);
 
 	
-
 #endif
 }
 
