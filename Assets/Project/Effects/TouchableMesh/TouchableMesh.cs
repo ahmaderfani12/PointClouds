@@ -11,7 +11,7 @@ public class TouchableMesh : MeshToPointCloud
 
     private Vector3 handVelocity;
     private Vector3 handPosition;
-    private float handRadious;
+    private float handRadius;
 
     private void Awake()
     {
@@ -38,13 +38,13 @@ public class TouchableMesh : MeshToPointCloud
     {
         handPosition = handSphere.transform.position;
         handVelocity = handSphere.Velocity;
-        handRadious = handSphere.Radious;
+        handRadius = handSphere.Radious;
     }
     private void SetHandDataToComputeShader()
     {
         computeShader.SetVector("_handVelocity", handVelocity);
         computeShader.SetVector("_handPosition", handPosition);
         computeShader.SetFloat("_drag", drag);
-        computeShader.SetFloat("_handRadious", handRadious);
+        computeShader.SetFloat("_handRadius", handRadius);
     }
 }

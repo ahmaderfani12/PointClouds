@@ -21,38 +21,33 @@ void ConfigureProcedural()
 	_uvPosition = _uvs[unity_InstanceID];
 	_normalDirection = _Normals[unity_InstanceID];
 	
-		float4x4 rotate = { cos(_YRotation),  0.0,  sin(_YRotation), 0.0f,
-						    0.0,   1.0,  0.0f, 0.0f,
-					        -sin(_YRotation),      0.0f,  cos(_YRotation), 0.0f,
-					        0.0f,      0.0f,  0.0f, 1.0f
-                   };
-	
+		float4x4 y_rotation = { cos(_YRotation),  0.0,  sin(_YRotation), 0.0f,
+							   0.0,   1.0,  0.0f, 0.0f,
+					          -sin(_YRotation), 0.0f,  cos(_YRotation), 0.0f,
+					           0.0f, 0.0f,  0.0f, 1.0f};
+                   
 		float4x4 scale = {_Step,0.0,0.0,0.0,
 							0.0,_Step,0.0,0.0,
 							0.0,0.0,_Step,0.0,
 							0.0,0.0,0.0,1.0 };
 	
-			
 		float4x4 worldPos = {1.0,0.0,0.0,(position.x * _scale)+_worldPos.x,
 							0.0,1.0,0.0,(position.y * _scale)+_worldPos.y,
 							0.0,0.0,1.0,(position.z * _scale)+ _worldPos.z,
 							0.0,0.0,0.0,1.0 };
 	
 		float4x4 localPos = {1.0,0.0,0.0,position.x * _scale,
-						0.0,1.0,0.0,position.y * _scale,
-						0.0,0.0,1.0, position.z * _scale,
-						0.0,0.0,0.0,1.0 };
-	
-		float4x4 localPosNegative = {1.0,0.0,0.0,- position.x * _scale,
-							0.0,1.0,0.0,- position.y * _scale,
-							0.0,0.0,1.0,- position.z * _scale,
+							0.0,1.0,0.0,position.y * _scale,
+							0.0,0.0,1.0, position.z * _scale,
 							0.0,0.0,0.0,1.0 };
 	
-	    
-	unity_ObjectToWorld = worldPos;
-	unity_ObjectToWorld =mul(mul(mul(mul(unity_ObjectToWorld,localPosNegative),rotate),localPos),scale);
-
+		float4x4 localPosNegative = {1.0,0.0,0.0,- position.x * _scale,
+									0.0,1.0,0.0,- position.y * _scale,
+									0.0,0.0,1.0,- position.z * _scale,
+									0.0,0.0,0.0,1.0 };
 	
+	unity_ObjectToWorld = 0;
+    unity_ObjectToWorld =mul(mul(mul(mul(worldPos,localPosNegative),y_rotation),localPos),scale);
 #endif
 }
 
