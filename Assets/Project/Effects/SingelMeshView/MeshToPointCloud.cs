@@ -51,7 +51,7 @@ public class MeshToPointCloud : MonoBehaviour
     {
         SetPositionBufferToComputeShader();
         SetStaticMaterialData();
-        DispachComputeShader();
+        //DispachComputeShader();
         SetComputeShaderBound();
     }
 
@@ -75,15 +75,6 @@ public class MeshToPointCloud : MonoBehaviour
             SetNormalsData();
     }
 
-    private void SetNormalsData()
-    {
-        normals = sourceMesh.normals;
-        normalsBuffer = new ComputeBuffer(normals.Length, 3 * 4);
-        normalsBuffer.SetData(normals);
-        material.SetBuffer("_Normals", normalsBuffer);
-        material.SetFloat("_UseNormals", 1);
-    }
-
     private void SetUVAndTextureData()
     {
         uvs = sourceMesh.uv;
@@ -92,6 +83,15 @@ public class MeshToPointCloud : MonoBehaviour
         material.SetBuffer("_uvs", uvsBuffer);
         material.SetTexture("_MainTex", sourceMeshTexture);
         colorFromTextureLerp = 1;
+    }
+
+    private void SetNormalsData()
+    {
+        normals = sourceMesh.normals;
+        normalsBuffer = new ComputeBuffer(normals.Length, 3 * 4);
+        normalsBuffer.SetData(normals);
+        material.SetBuffer("_Normals", normalsBuffer);
+        material.SetFloat("_UseNormals", 1);
     }
 
     protected void DispachComputeShader()
@@ -120,7 +120,8 @@ public class MeshToPointCloud : MonoBehaviour
         material.SetVector("_color", new Vector4(pointsColor.r, pointsColor.g, pointsColor.b, 1));
         material.SetFloat("_ColorFromTextureLerp", colorFromTextureLerp);
         material.SetFloat("_UseAlpha", useAlpha?1:0);
-        material.SetFloat("_YRotation", transform.eulerAngles.y * Mathf.Deg2Rad);
+        material.SetVector("_objectRotation", new Vector3(transform.eulerAngles.x * Mathf.Deg2Rad,
+            transform.eulerAngles.y * Mathf.Deg2Rad, transform.eulerAngles.z * Mathf.Deg2Rad));
     }
 
     private void SetComputeShaderBound()
@@ -143,8 +144,5 @@ public class MeshToPointCloud : MonoBehaviour
             normalsBuffer.Release();
             normalsBuffer = null;
         }
-
     }
-
-
 }
