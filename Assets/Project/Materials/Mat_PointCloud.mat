@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mat_MeshShow
+  m_Name: Mat_PointCloud
   m_Shader: {fileID: -6465566751694194690, guid: d2616a0dc1d366f4bacaa681ab15b2ae,
     type: 3}
   m_ShaderKeywords: 

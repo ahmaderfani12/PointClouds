@@ -11,7 +11,7 @@ float3 _worldPos;
 float1 _scale;
 float3 _uvPosition;
 float3 _normalDirection;
-float _YRotation;
+float3 _objectRotation;
 
 void ConfigureProcedural()
 { //run per vertex
@@ -21,11 +21,23 @@ void ConfigureProcedural()
 	_uvPosition = _uvs[unity_InstanceID];
 	_normalDirection = _Normals[unity_InstanceID];
 	
-		float4x4 y_rotation = { cos(_YRotation),  0.0,  sin(_YRotation), 0.0f,
+		float4x4 x_rotation = { 1.0,  0.0,  0.0, 0.0f,
+								0.0,   cos(_objectRotation.x), -sin(_objectRotation.x), 0.0f,
+								0.0, sin(_objectRotation.x),  cos(_objectRotation.x), 0.0f,
+								0.0f, 0.0f,  0.0f, 1.0f};
+	
+		float4x4 y_rotation = { cos(_objectRotation.y),  0.0,  sin(_objectRotation.y), 0.0f,
 							   0.0,   1.0,  0.0f, 0.0f,
-					          -sin(_YRotation), 0.0f,  cos(_YRotation), 0.0f,
+					          -sin(_objectRotation.y), 0.0f,  cos(_objectRotation.y), 0.0f,
 					           0.0f, 0.0f,  0.0f, 1.0f};
-                   
+	
+	
+		float4x4 z_rotation = { cos(_objectRotation.z),  -sin(_objectRotation.z),  0.0, 0.0f,
+								sin(_objectRotation.z),   cos(_objectRotation.z), 0.0, 0.0f,
+								0.0, 0.0,  1.0, 0.0f,
+								0.0f, 0.0f,  0.0f, 1.0f};
+  
+	
 		float4x4 scale = {_Step,0.0,0.0,0.0,
 							0.0,_Step,0.0,0.0,
 							0.0,0.0,_Step,0.0,
@@ -46,8 +58,9 @@ void ConfigureProcedural()
 									0.0,0.0,1.0,- position.z * _scale,
 									0.0,0.0,0.0,1.0 };
 	
+	float4x4 rotationMatrix = mul(mul(x_rotation,y_rotation),z_rotation);
 	unity_ObjectToWorld = 0;
-    unity_ObjectToWorld =mul(mul(mul(mul(worldPos,localPosNegative),y_rotation),localPos),scale);
+    unity_ObjectToWorld =mul(mul(mul(mul(worldPos,localPosNegative),rotationMatrix),localPos),scale);
 #endif
 }
 

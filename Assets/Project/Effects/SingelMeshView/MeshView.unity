@@ -732,7 +732,7 @@ MonoBehaviour:
   pointsColor: {r: 1, g: 1, b: 1, a: 1}
   colorIntensity: 0.5
   colorFromTextureLerp: 0
-  useAlpha: 0
+  useAlpha: 1
 --- !u!4 &1735843517
 Transform:
   m_ObjectHideFlags: 0
