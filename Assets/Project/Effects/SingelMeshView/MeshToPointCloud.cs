@@ -51,7 +51,7 @@ public class MeshToPointCloud : MonoBehaviour
     {
         SetPositionBufferToComputeShader();
         SetStaticMaterialData();
-        DispachComputeShader();
+        //DispachComputeShader();
         SetComputeShaderBound();
     }
 
@@ -75,15 +75,6 @@ public class MeshToPointCloud : MonoBehaviour
             SetNormalsData();
     }
 
-    private void SetNormalsData()
-    {
-        normals = sourceMesh.normals;
-        normalsBuffer = new ComputeBuffer(normals.Length, 3 * 4);
-        normalsBuffer.SetData(normals);
-        material.SetBuffer("_Normals", normalsBuffer);
-        material.SetFloat("_UseNormals", 1);
-    }
-
     private void SetUVAndTextureData()
     {
         uvs = sourceMesh.uv;
@@ -92,6 +83,15 @@ public class MeshToPointCloud : MonoBehaviour
         material.SetBuffer("_uvs", uvsBuffer);
         material.SetTexture("_MainTex", sourceMeshTexture);
         colorFromTextureLerp = 1;
+    }
+
+    private void SetNormalsData()
+    {
+        normals = sourceMesh.normals;
+        normalsBuffer = new ComputeBuffer(normals.Length, 3 * 4);
+        normalsBuffer.SetData(normals);
+        material.SetBuffer("_Normals", normalsBuffer);
+        material.SetFloat("_UseNormals", 1);
     }
 
     protected void DispachComputeShader()
@@ -144,8 +144,5 @@ public class MeshToPointCloud : MonoBehaviour
             normalsBuffer.Release();
             normalsBuffer = null;
         }
-
     }
-
-
 }

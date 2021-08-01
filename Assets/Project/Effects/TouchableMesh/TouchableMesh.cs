@@ -7,6 +7,7 @@ public class TouchableMesh : MeshToPointCloud
 {
     [SerializeField] private HandSphere handSphere;
     [SerializeField , Range(0,1)] private float drag = 0.5f;
+
     private ComputeBuffer velocitesBuffer;
 
     private Vector3 handVelocity;
