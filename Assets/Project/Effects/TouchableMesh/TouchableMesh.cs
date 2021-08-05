@@ -17,7 +17,7 @@ public class TouchableMesh : MeshToPointCloud
     private void Awake()
     {
         SetVelocityBuffer();
-        InitalMeshData();     
+        InitializeFromMeshData();     
     }
  
     private new void Update()

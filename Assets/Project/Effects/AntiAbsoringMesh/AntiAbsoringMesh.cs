@@ -13,7 +13,7 @@ public class AntiAbsoringMesh : MeshToPointCloud
 
     private void Awake()
     {
-        InitalMeshData();
+        InitializeFromMeshData();
         SetTempPositionBufferToComputeShader();
     }
 

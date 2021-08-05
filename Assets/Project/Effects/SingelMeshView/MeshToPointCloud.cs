@@ -44,23 +44,23 @@ public class MeshToPointCloud : MonoBehaviour
     //we can ignore executing compute shader
     private void Awake()
     {
-        InitalMeshData(); 
-    }
-
-    protected void InitalMeshData()
-    {
-        SetPositionBufferToComputeShader();
-        SetStaticMaterialData();
-        //DispachComputeShader();
+        InitializeFromMeshData();
         SetComputeShaderBound();
     }
 
-    private void SetPositionBufferToComputeShader()
+    protected void InitializeFromMeshData()
+    {
+        GetPositionsDataFromMesh();
+        SetStaticMaterialData();    
+    }
+
+    private void GetPositionsDataFromMesh()
     {
         vertices = sourceMesh.vertices;
         Debug.Log("vertis Count :" + vertices.Length);
         positionsBuffer = new ComputeBuffer(vertices.Length, 3 * 4);
         positionsBuffer.SetData(vertices);
+
         computeShader.SetBuffer(0, "_Positions", positionsBuffer);
     }
 

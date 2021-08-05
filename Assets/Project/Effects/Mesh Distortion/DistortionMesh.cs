@@ -22,7 +22,7 @@ public class DistortionMesh : MeshToPointCloud
 
     private void Awake()
     {
-        base.InitalMeshData();
+        base.InitializeFromMeshData();
 
         SetTempPositionBufferToComputeShader();
     }
