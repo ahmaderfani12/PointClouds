@@ -40,12 +40,12 @@ public class MeshToPointCloud : MonoBehaviour
     Vector2[] uvs;
     Vector3[] normals;
 
-    //If we just want to show the Points whithout any caculation on compute shader(like this class)
-    //we can ignore executing compute shader
+    //If we just want to show the Points whithout any caculation(VFX) on Compute shader(like this class)
+    //we can ignore executing Compute shader
     private void Awake()
     {
         InitializeFromMeshData();
-        SetComputeShaderBound();
+        SetBound();
     }
 
     protected void InitializeFromMeshData()
@@ -124,7 +124,7 @@ public class MeshToPointCloud : MonoBehaviour
             transform.eulerAngles.y * Mathf.Deg2Rad, transform.eulerAngles.z * Mathf.Deg2Rad));
     }
 
-    private void SetComputeShaderBound()
+    private void SetBound()
     {
         bounds = new Bounds(Vector3.zero, Vector3.one * 200);
     }
