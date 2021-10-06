@@ -1,6 +1,6 @@
 #if defined(UNITY_PROCEDURAL_INSTANCING_ENABLED)
 	StructuredBuffer<float3> _Positions;
-	StructuredBuffer<float3> _uvs;
+	StructuredBuffer<float2> _uvs;
 	StructuredBuffer<float3> _Normals;
 #endif
 
@@ -9,7 +9,7 @@ float4 _color;
 float1 _intensity;
 float3 _worldPos;
 float1 _scale;
-float3 _uvPosition;
+float2 _uvPosition;
 float3 _normalDirection;
 float3 _objectRotation;
 
@@ -64,7 +64,7 @@ void ConfigureProcedural()
 #endif
 }
 
-void ShaderGraphFunction_float(float3 In, out float3 Out, out float4 Color, out float1 Intensity, out float3 UVPosition, out float3 NormalDirection)
+void ShaderGraphFunction_float(float3 In, out float3 Out, out float4 Color, out float1 Intensity, out float2 UVPosition, out float3 NormalDirection)
 {
     Out = In;
     Color = _color;
@@ -74,7 +74,7 @@ void ShaderGraphFunction_float(float3 In, out float3 Out, out float4 Color, out 
 
 }
 
-void ShaderGraphFunction_half(half3 In, out half3 Out, out float4 Color, out float1 Intensity, out float3 UVPosition, out float3 NormalDirection)
+void ShaderGraphFunction_half(half3 In, out half3 Out, out float4 Color, out float1 Intensity, out float2 UVPosition, out float3 NormalDirection)
 {
     Out = In;
     Color = _color;
