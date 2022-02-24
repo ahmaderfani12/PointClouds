@@ -120,8 +120,7 @@ public class MeshToPointCloud : MonoBehaviour
         material.SetVector("_color", new Vector4(pointsColor.r, pointsColor.g, pointsColor.b, 1));
         material.SetFloat("_ColorFromTextureLerp", colorFromTextureLerp);
         material.SetFloat("_UseAlpha", useAlpha?1:0);
-        material.SetVector("_objectRotation", new Vector3(transform.eulerAngles.x * Mathf.Deg2Rad,
-            transform.eulerAngles.y * Mathf.Deg2Rad, transform.eulerAngles.z * Mathf.Deg2Rad));
+        material.SetMatrix("_quaternion", Matrix4x4.TRS(new Vector3(0, 0, 0), transform.rotation, new Vector3(1, 1, 1)));
     }
 
     private void SetBound()
