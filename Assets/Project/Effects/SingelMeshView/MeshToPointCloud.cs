@@ -123,7 +123,7 @@ public class MeshToPointCloud : MonoBehaviour
         material.SetMatrix("_quaternion", Matrix4x4.TRS(new Vector3(0, 0, 0), transform.rotation, new Vector3(1, 1, 1)));
     }
 
-    private void SetBound()
+    protected void SetBound()
     {
         bounds = new Bounds(Vector3.zero, Vector3.one * 200);
     }

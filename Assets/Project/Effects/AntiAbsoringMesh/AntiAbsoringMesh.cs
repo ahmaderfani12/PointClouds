@@ -15,6 +15,7 @@ public class AntiAbsoringMesh : MeshToPointCloud
     {
         InitializeFromMeshData();
         SetTempPositionBufferToComputeShader();
+        base.SetBound();
     }
 
     private new void Update()
